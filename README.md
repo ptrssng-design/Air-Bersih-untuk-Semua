@@ -44,7 +44,18 @@ CSS Media Queries digunakan untuk menyesuaikan tata letak, ukuran teks, gambar, 
 Sertakan potongan kode HTML dan CSS yang benar-benar digunakan dalam proyek, kemudian jelaskan fungsi setiap bagian kode tersebut. Contoh dapat mencakup struktur HTML semantik, navbar, layout Flexbox atau Grid, dan media queries.
 
 ## Struktur Folder
-Jelaskan susunan file dan direktori.
+Air Bersih untuk Semua/
+├── CSS/
+│   └── style.css
+├── images/
+├── js/
+├── Air Bersih untuk Semua.zip
+├── README.md
+├── artikel.html
+├── edukasi.html
+├── index.html
+├── tentang.html
+└── tips.html
 
 ## Website dan Repository
 Repository: https://github.com/ptrssng-design/Air-Bersih-untuk-Semua/
