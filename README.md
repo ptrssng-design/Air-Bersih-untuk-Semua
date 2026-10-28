@@ -42,9 +42,8 @@ CSS Media Queries digunakan untuk menyesuaikan tata letak, ukuran teks, gambar, 
 
 6. Contoh Implementasi Kode
 a. Struktur HTML5 dan CSS Eksternal
-
 Berikut potongan kode dari file index.html:
-<!DOCTYPE html>
+```<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
@@ -67,7 +66,7 @@ Berikut potongan kode dari file index.html:
     <!-- Footer website -->
 </body>
 </html>
-
+```
 **Penjelasan kode:**
 1. <!DOCTYPE html> menyatakan bahwa dokumen menggunakan standar HTML5.
 2. <html lang="id"> menunjukkan bahwa bahasa utama website adalah bahasa Indonesia.
@@ -79,7 +78,7 @@ Berikut potongan kode dari file index.html:
 
 b. Implementasi Navbar
 Berikut potongan kode navigasi dari file index.html:
-<header class="site-header">
+```<header class="site-header">
     <div class="container topbar">
         <a href="index.html" class="brand"
            aria-label="Air Bersih untuk Semua">
@@ -101,7 +100,7 @@ Berikut potongan kode navigasi dari file index.html:
         </nav>
     </div>
 </header>
-
+```
 
 **Penjelasan kode:**
 1. <header class="site-header"> menjadi wadah utama navbar website.
@@ -113,7 +112,7 @@ Berikut potongan kode navigasi dari file index.html:
 
 c. Pengaturan Layout dengan Flexbox
 Berikut potongan kode dari file css/style.css:
-.topbar {
+```.topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,7 +134,7 @@ Berikut potongan kode dari file css/style.css:
     gap: 18px;
     flex-wrap: wrap;
 }
-
+```
 **Penjelasan kode:**
 1. display: flex pada .topbar mengatur logo dan navigasi dalam satu tata letak yang fleksibel.
 2. align-items: center menyelaraskan elemen secara vertikal.
@@ -146,7 +145,7 @@ Berikut potongan kode dari file css/style.css:
 
 d. Pengaturan Layout dengan CSS Grid
 Berikut contoh kode dari file css/style.css:
-.hero-inner {
+```.hero-inner {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
@@ -158,7 +157,7 @@ Berikut contoh kode dari file css/style.css:
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 24px;
 }
-
+```
 **Penjelasan kode:**
 1. display: grid digunakan untuk menyusun elemen dalam bentuk kolom dan baris.
 2. grid-template-columns: 1.1fr 0.9fr membagi area hero menjadi dua kolom dengan perbandingan ukuran 1,1 banding 0,9.
@@ -168,7 +167,7 @@ Berikut contoh kode dari file css/style.css:
 
 e. Implementasi Responsive Design dengan Media Queries
 Berikut potongan kode dari file css/style.css:
-@media (max-width: 900px) {
+```@media (max-width: 900px) {
     .hero-inner,
     .content-grid,
     .problem-shell,
@@ -202,7 +201,7 @@ Berikut potongan kode dari file css/style.css:
         grid-template-columns: 1fr;
     }
 }
-
+```
 **Penjelasan kode:**
 1. @media (max-width: 900px) menerapkan aturan CSS ketika lebar viewport tidak lebih dari 900 piksel.
 2. grid-template-columns: 1fr mengubah sejumlah layout menjadi satu kolom agar konten lebih mudah dibaca pada layar yang lebih kecil.
