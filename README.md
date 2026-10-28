@@ -214,9 +214,6 @@ Berikut potongan kode dari file css/style.css:
 
 Dengan media queries, tata letak website dapat menyesuaikan ukuran layar sehingga konten tetap rapi dan lebih nyaman dibaca pada perangkat yang berbeda.
 
-**Catatan:** Pada kode proyek yang diperiksa, navbar menggunakan menu Flexbox yang dapat membungkus ke baris berikutnya. Potongan media queries di atas belum menunjukkan implementasi tombol hamburger. Karena itu, dokumentasi ini tidak menyatakan bahwa navbar sudah menggunakan hamburger menu.
-
-
 
 ## Struktur Folder
 Air Bersih untuk Semua/
