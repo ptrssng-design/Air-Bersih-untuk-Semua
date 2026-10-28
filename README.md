@@ -41,7 +41,183 @@ Flexbox dan/atau CSS Grid digunakan untuk mengatur posisi elemen, menyusun kartu
 CSS Media Queries digunakan untuk menyesuaikan tata letak, ukuran teks, gambar, dan navigasi berdasarkan lebar layar perangkat. Responsivitas website diperiksa pada desktop dengan lebar 1440 px, tablet 768 px, dan smartphone 375 px.
 
 6. Contoh Implementasi Kode
-Sertakan potongan kode HTML dan CSS yang benar-benar digunakan dalam proyek, kemudian jelaskan fungsi setiap bagian kode tersebut. Contoh dapat mencakup struktur HTML semantik, navbar, layout Flexbox atau Grid, dan media queries.
+a. Struktur HTML5 dan CSS Eksternal
+
+Berikut potongan kode dari file index.html:
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <meta
+        name="description"
+        content="Air Bersih untuk Semua adalah website edukasi tentang SDG 6: air bersih, sanitasi, dan konservasi air."
+    />
+    <title>Air Bersih untuk Semua</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <!-- Navigasi website -->
+    </header>
+    <main>
+        <!-- Konten utama halaman -->
+    </main>
+    <!-- Footer website -->
+</body>
+</html>
+
+**Penjelasan kode:**
+1. <!DOCTYPE html> menyatakan bahwa dokumen menggunakan standar HTML5.
+2. <html lang="id"> menunjukkan bahwa bahasa utama website adalah bahasa Indonesia.
+3. <meta charset="UTF-8"> mengatur pengodean karakter agar teks dapat ditampilkan dengan benar.
+4. <meta name="viewport"> membantu menyesuaikan tampilan website dengan ukuran layar perangkat.
+5. <title> menentukan judul halaman yang ditampilkan pada tab browser.
+6. <link rel="stylesheet" href="css/style.css"> menghubungkan halaman HTML dengan file CSS eksternal.
+7. Elemen <header> digunakan untuk bagian kepala website, sedangkan <main> menampung konten utama halaman.
+
+b. Implementasi Navbar
+Berikut potongan kode navigasi dari file index.html:
+<header class="site-header">
+    <div class="container topbar">
+        <a href="index.html" class="brand"
+           aria-label="Air Bersih untuk Semua">
+            <img class="brand-mark"
+                 src="images/Air.jpg" alt="" />
+            <span>Air Bersih untuk Semua</span>
+        </a>
+        <nav class="site-nav" aria-label="Navigasi utama">
+            <a class="nav-link active"
+               href="index.html">Beranda</a>
+            <a class="nav-link"
+               href="edukasi.html">Edukasi</a>
+            <a class="nav-link"
+               href="tips.html">Tips &amp; Aksi</a>
+            <a class="nav-link"
+               href="artikel.html">Artikel</a>
+            <a class="nav-link"
+               href="tentang.html">Tentang Kami</a>
+        </nav>
+    </div>
+</header>
+
+
+**Penjelasan kode:**
+1. <header class="site-header"> menjadi wadah utama navbar website.
+2. <div class="container topbar"> mengatur area navbar, termasuk posisi logo dan menu navigasi.
+3. Elemen <a class="brand"> menampilkan logo dan nama website. Tautannya mengarah ke halaman beranda.
+4. <nav class="site-nav"> digunakan sebagai wadah menu navigasi utama.
+5. Setiap <a class="nav-link"> menghubungkan pengunjung dengan halaman yang berbeda, yaitu Beranda, Edukasi, Tips & Aksi, Artikel, dan Tentang Kami.
+6. Class active digunakan untuk membedakan menu halaman yang sedang aktif.
+
+c. Pengaturan Layout dengan Flexbox
+Berikut potongan kode dari file css/style.css:
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 78px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+**Penjelasan kode:**
+1. display: flex pada .topbar mengatur logo dan navigasi dalam satu tata letak yang fleksibel.
+2. align-items: center menyelaraskan elemen secara vertikal.
+3. justify-content: space-between memberikan ruang di antara logo dan menu navigasi.
+4. gap: 20px mengatur jarak antara elemen di dalam .topbar.
+5. display: inline-flex pada .brand menyusun logo dan nama website secara sejajar.
+6. flex-wrap: wrap pada .site-nav memungkinkan menu berpindah ke baris berikutnya jika ruang tidak mencukupi.
+
+d. Pengaturan Layout dengan CSS Grid
+Berikut contoh kode dari file css/style.css:
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 42px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+}
+
+**Penjelasan kode:**
+1. display: grid digunakan untuk menyusun elemen dalam bentuk kolom dan baris.
+2. grid-template-columns: 1.1fr 0.9fr membagi area hero menjadi dua kolom dengan perbandingan ukuran 1,1 banding 0,9.
+3. align-items: center menyelaraskan konten di dalam grid secara vertikal.
+4. repeat(5, minmax(0, 1fr)) membagi area .team-grid menjadi lima kolom dengan lebar fleksibel yang sama.
+5. gap: 24px memberikan jarak antaritem agar tata letak terlihat rapi.
+
+e. Implementasi Responsive Design dengan Media Queries
+Berikut potongan kode dari file css/style.css:
+@media (max-width: 900px) {
+    .hero-inner,
+    .content-grid,
+    .problem-shell,
+    .footer-grid,
+    .grid-3,
+    .value-grid,
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        flex-direction: column;
+        padding: 18px 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-nav {
+        gap: 10px;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.92rem;
+    }
+
+    .grid-4,
+    .cards-grid,
+    .info-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+**Penjelasan kode:**
+1. @media (max-width: 900px) menerapkan aturan CSS ketika lebar viewport tidak lebih dari 900 piksel.
+2. grid-template-columns: 1fr mengubah sejumlah layout menjadi satu kolom agar konten lebih mudah dibaca pada layar yang lebih kecil.
+3. flex-direction: column mengubah susunan logo dan navigasi pada .topbar menjadi vertikal.
+4. @media (max-width: 640px) menerapkan penyesuaian tambahan untuk layar smartphone.
+5. gap: 10px` memperkecil jarak antarmenu navigasi.
+6. padding: 8px 10px menyesuaikan ruang di sekitar teks menu.
+7. font-size: 0.92rem menyesuaikan ukuran teks navigasi.
+8. grid-template-columns: 1fr membuat kartu informasi dan anggota kelompok tersusun dalam satu kolom.
+
+Dengan media queries, tata letak website dapat menyesuaikan ukuran layar sehingga konten tetap rapi dan lebih nyaman dibaca pada perangkat yang berbeda.
+
+**Catatan:** Pada kode proyek yang diperiksa, navbar menggunakan menu Flexbox yang dapat membungkus ke baris berikutnya. Potongan media queries di atas belum menunjukkan implementasi tombol hamburger. Karena itu, dokumentasi ini tidak menyatakan bahwa navbar sudah menggunakan hamburger menu.
+
+
 
 ## Struktur Folder
 Air Bersih untuk Semua/
