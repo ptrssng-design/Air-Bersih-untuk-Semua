@@ -25,23 +25,23 @@ Air Bersih untuk Semua merupakan website edukasi yang bertujuan meningkatkan kes
 4. CSS Media Queries - Digunakan untuk menyesuaikan tampilan website pada desktop, tablet, dan smartphone.
 
 ## Penjelasan Implementasi
-1. Struktur HTML
+### 1. Struktur HTML
 HTML5 digunakan untuk membangun struktur setiap halaman website. Elemen semantik seperti header, nav, main, section, article, dan footer digunakan sesuai kebutuhan untuk membuat struktur konten lebih terorganisasi dan mudah dipahami.
 
-2. Styling dengan CSS
+### 2. Styling dengan CSS
 CSS3 digunakan untuk mengatur desain visual website, termasuk warna, tipografi, ukuran elemen, jarak, dan tampilan komponen. Penggunaan stylesheet eksternal membantu menjaga konsistensi desain pada seluruh halaman.
 
-3. Navigasi Website
+### 3. Navigasi Website
 Navigasi digunakan untuk memudahkan pengunjung berpindah antara halaman Beranda, Edukasi, Panduan, Artikel, dan Tentang. Menu navigasi dibuat konsisten agar pengunjung dapat menemukan informasi yang dibutuhkan dengan mudah.
 
-4. Layout dengan Flexbox dan/atau CSS Grid
+### 4. Layout dengan Flexbox dan/atau CSS Grid
 Flexbox dan/atau CSS Grid digunakan untuk mengatur posisi elemen, menyusun kartu informasi, dan menyesuaikan tata letak konten agar tetap rapi pada berbagai ukuran layar.
 
-5. Responsive Design
+### 5. Responsive Design
 CSS Media Queries digunakan untuk menyesuaikan tata letak, ukuran teks, gambar, dan navigasi berdasarkan lebar layar perangkat. Responsivitas website diperiksa pada desktop dengan lebar 1440 px, tablet 768 px, dan smartphone 375 px.
 
-6. Contoh Implementasi Kode
-a. Struktur HTML5 dan CSS Eksternal
+### 6. Contoh Implementasi Kode
+#### a. Struktur HTML5 dan CSS Eksternal
 Berikut potongan kode dari file index.html:
 ```<!DOCTYPE html>
 <html lang="id">
@@ -76,7 +76,7 @@ Berikut potongan kode dari file index.html:
 6. <link rel="stylesheet" href="css/style.css"> menghubungkan halaman HTML dengan file CSS eksternal.
 7. Elemen <header> digunakan untuk bagian kepala website, sedangkan <main> menampung konten utama halaman.
 
-b. Implementasi Navbar
+#### b. Implementasi Navbar
 Berikut potongan kode navigasi dari file index.html:
 ```<header class="site-header">
     <div class="container topbar">
@@ -110,7 +110,7 @@ Berikut potongan kode navigasi dari file index.html:
 5. Setiap <a class="nav-link"> menghubungkan pengunjung dengan halaman yang berbeda, yaitu Beranda, Edukasi, Tips & Aksi, Artikel, dan Tentang Kami.
 6. Class active digunakan untuk membedakan menu halaman yang sedang aktif.
 
-c. Pengaturan Layout dengan Flexbox
+#### c. Pengaturan Layout dengan Flexbox
 Berikut potongan kode dari file css/style.css:
 ```.topbar {
     display: flex;
@@ -143,7 +143,7 @@ Berikut potongan kode dari file css/style.css:
 5. display: inline-flex pada .brand menyusun logo dan nama website secara sejajar.
 6. flex-wrap: wrap pada .site-nav memungkinkan menu berpindah ke baris berikutnya jika ruang tidak mencukupi.
 
-d. Pengaturan Layout dengan CSS Grid
+#### d. Pengaturan Layout dengan CSS Grid
 Berikut contoh kode dari file css/style.css:
 ```.hero-inner {
     display: grid;
@@ -165,7 +165,7 @@ Berikut contoh kode dari file css/style.css:
 4. repeat(5, minmax(0, 1fr)) membagi area .team-grid menjadi lima kolom dengan lebar fleksibel yang sama.
 5. gap: 24px memberikan jarak antaritem agar tata letak terlihat rapi.
 
-e. Implementasi Responsive Design dengan Media Queries
+#### e. Implementasi Responsive Design dengan Media Queries
 Berikut potongan kode dari file css/style.css:
 ```@media (max-width: 900px) {
     .hero-inner,
