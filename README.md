@@ -30,7 +30,7 @@ Air Bersih untuk Semua merupakan website edukasi yang bertujuan meningkatkan kes
 HTML5 digunakan untuk membangun struktur setiap halaman website. Elemen semantik seperti header, nav, main, section, article, dan footer digunakan sesuai kebutuhan untuk membuat struktur konten lebih terorganisasi dan mudah dipahami.
 
 ### 2. Styling dengan CSS
-CSS3 digunakan untuk mengatur desain visual website, termasuk warna, tipografi, ukuran elemen, jarak, dan tampilan komponen. Penggunaan stylesheet eksternal membantu menjaga konsistensi desain pada seluruh halaman.
+CSS3 digunakan untuk mengatur desain visual website. Setiap halaman memuat satu file CSS sendiri. Di dalam setiap file, aturan umum (warna, tipografi, navbar, dan footer) berada di bagian awal, diikuti aturan khusus halaman tersebut.
 
 ### 3. Navigasi Website
 Navigasi digunakan untuk memudahkan pengunjung berpindah antara halaman Beranda, Edukasi, Tips & Aksi, Artikel, dan Tentang Kami. Menu navigasi dibuat konsisten pada seluruh halaman dan selalu terlihat pada desktop. Pada layar kecil, checkbox dan label HTML mengendalikan menu tanpa JavaScript serta tetap dapat digunakan dengan keyboard.
@@ -56,7 +56,7 @@ Berikut potongan kode dari file `index.html`:
         content="Air Bersih untuk Semua adalah website edukasi tentang SDG 6: air bersih, sanitasi, dan konservasi air."
     />
     <title>Air Bersih untuk Semua</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="CSS/beranda.css" />
 </head>
 <body>
     <header class="site-header">
@@ -76,7 +76,7 @@ Berikut potongan kode dari file `index.html`:
 3. `<meta charset="UTF-8">` mengatur pengodean karakter agar teks dapat ditampilkan dengan benar.
 4. `<meta name="viewport">` membantu menyesuaikan tampilan website dengan ukuran layar perangkat.
 5. `<title>` menentukan judul halaman yang ditampilkan pada tab browser.
-6. `<link rel="stylesheet" href="css/style.css">` menghubungkan halaman HTML dengan file CSS eksternal.
+6. `<link rel="stylesheet">` memuat satu file CSS yang berisi aturan umum dan aturan khusus Beranda.
 7. Elemen `<header>` digunakan untuk bagian kepala website, sedangkan `<main>` menampung konten utama halaman.
 
 #### b. Implementasi Navbar
@@ -100,7 +100,7 @@ Berikut pola navigasi dari file `index.html`:
 4. Class `active` digunakan untuk membedakan menu halaman yang sedang aktif.
 
 #### c. Pengaturan Layout dengan Flexbox
-Berikut potongan kode dari file `css/style.css`:
+Berikut potongan kode umum yang terdapat pada setiap file CSS halaman:
 ```
 .topbar {
     display: flex;
@@ -122,7 +122,7 @@ Berikut potongan kode dari file `css/style.css`:
     display: flex;
     align-items: center;
     gap: 18px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 ```
 **Penjelasan kode:**
@@ -131,11 +131,12 @@ Berikut potongan kode dari file `css/style.css`:
 3. `justify-content: space-between` memberikan ruang di antara logo dan menu navigasi.
 4. `gap: 20px` mengatur jarak antara elemen di dalam `.topbar`.
 5. `display: inline-flex` pada `.brand` menyusun logo dan nama website secara sejajar.
-6. `flex-wrap: wrap` pada `.site-nav` memungkinkan menu berpindah ke baris berikutnya jika ruang tidak mencukupi.
+6. `flex-wrap: nowrap` pada `.site-nav` menjaga navbar satu baris pada desktop; pada layar kecil, menu berubah menjadi dropdown.
 
 #### d. Pengaturan Layout dengan CSS Grid
-Berikut contoh kode dari file `css/style.css`:
+Contoh berikut berasal dari file CSS masing-masing halaman:
 ```
+/* CSS/beranda.css */
 .hero-inner {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -143,6 +144,7 @@ Berikut contoh kode dari file `css/style.css`:
     gap: 42px;
 }
 
+/* CSS/tentang.css */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -157,7 +159,7 @@ Berikut contoh kode dari file `css/style.css`:
 5. `gap: 24px` memberikan jarak antaritem agar tata letak terlihat rapi.
 
 #### e. Implementasi Responsive Design dengan Media Queries
-Berikut potongan kode dari file `css/style.css`:
+Aturan navbar dan konten halaman berada bersama dalam file CSS halaman masing-masing:
 ```
 @media (max-width: 900px) {
     .site-nav {
@@ -170,21 +172,6 @@ Berikut potongan kode dari file `css/style.css`:
     }
 }
 
-@media (min-width: 641px) and (max-width: 900px) {
-    .grid-3,
-    .cards-grid,
-    .article-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 640px) {
-    .grid-3,
-    .cards-grid,
-    .article-grid {
-        grid-template-columns: 1fr;
-    }
-}
 ```
 **Penjelasan kode:**
 1. `@media (max-width: 900px)` menerapkan aturan CSS ketika lebar viewport tidak lebih dari 900 piksel.
@@ -196,8 +183,12 @@ Dengan media queries, tata letak website dapat menyesuaikan ukuran layar sehingg
 
 ## Struktur Folder
 Air Bersih untuk Semua/
-├── css/
-│   └── style.css
+├── CSS/
+│   ├── beranda.css
+│   ├── edukasi.css
+│   ├── tips.css
+│   ├── artikel.css
+│   └── tentang.css
 ├── images/
 ├── README.md
 ├── artikel.html
