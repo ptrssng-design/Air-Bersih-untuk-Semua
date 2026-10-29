@@ -21,8 +21,9 @@ Air Bersih untuk Semua merupakan website edukasi yang bertujuan meningkatkan kes
 ## Teknologi
 1. HTML5 - Digunakan untuk menyusun struktur dan konten setiap halaman website.
 2. CSS3 - Digunakan untuk mengatur tampilan, warna, tipografi, jarak, dan tata letak website.
-3. Flexbox dan/atau CSS Grid - Digunakan untuk menyusun elemen halaman agar teratur dan fleksibel.
+3. Flexbox dan CSS Grid - Digunakan untuk menyusun elemen halaman agar teratur dan fleksibel.
 4. CSS Media Queries - Digunakan untuk menyesuaikan tampilan website pada desktop, tablet, dan smartphone.
+5. Navigasi HTML tanpa JavaScript - Menu layar kecil menggunakan checkbox dan label HTML yang dapat dikendalikan dengan mouse maupun keyboard.
 
 ## Penjelasan Implementasi
 ### 1. Struktur HTML
@@ -32,7 +33,7 @@ HTML5 digunakan untuk membangun struktur setiap halaman website. Elemen semantik
 CSS3 digunakan untuk mengatur desain visual website, termasuk warna, tipografi, ukuran elemen, jarak, dan tampilan komponen. Penggunaan stylesheet eksternal membantu menjaga konsistensi desain pada seluruh halaman.
 
 ### 3. Navigasi Website
-Navigasi digunakan untuk memudahkan pengunjung berpindah antara halaman Beranda, Edukasi, Panduan, Artikel, dan Tentang. Menu navigasi dibuat konsisten agar pengunjung dapat menemukan informasi yang dibutuhkan dengan mudah.
+Navigasi digunakan untuk memudahkan pengunjung berpindah antara halaman Beranda, Edukasi, Tips & Aksi, Artikel, dan Tentang Kami. Menu navigasi dibuat konsisten pada seluruh halaman dan selalu terlihat pada desktop. Pada layar kecil, checkbox dan label HTML mengendalikan menu tanpa JavaScript serta tetap dapat digunakan dengan keyboard.
 
 ### 4. Layout dengan Flexbox dan/atau CSS Grid
 Flexbox dan/atau CSS Grid digunakan untuk mengatur posisi elemen, menyusun kartu informasi, dan menyesuaikan tata letak konten agar tetap rapi pada berbagai ukuran layar.
@@ -79,39 +80,24 @@ Berikut potongan kode dari file `index.html`:
 7. Elemen `<header>` digunakan untuk bagian kepala website, sedangkan `<main>` menampung konten utama halaman.
 
 #### b. Implementasi Navbar
-Berikut potongan kode navigasi dari file `index.html`:
+Berikut pola navigasi dari file `index.html`:
 ```
-<header class="site-header">
-    <div class="container topbar">
-        <a href="index.html" class="brand"
-           aria-label="Air Bersih untuk Semua">
-            <img class="brand-mark"
-                 src="images/Air.jpg" alt="" />
-            <span>Air Bersih untuk Semua</span>
-        </a>
-
-        <nav class="site-nav" aria-label="Navigasi utama">
-            <a class="nav-link active"
-               href="index.html">Beranda</a>
-            <a class="nav-link"
-               href="edukasi.html">Edukasi</a>
-            <a class="nav-link"
-               href="tips.html">Tips &amp; Aksi</a>
-            <a class="nav-link"
-               href="artikel.html">Artikel</a>
-            <a class="nav-link"
-               href="tentang.html">Tentang Kami</a>
-        </nav>
-    </div>
-</header>
+<div class="nav-menu">
+    <input class="nav-checkbox" type="checkbox" id="site-navigation-toggle" />
+    <label class="menu-toggle" for="site-navigation-toggle">
+        <span class="menu-toggle-icon" aria-hidden="true"></span>
+        <span>Menu navigasi</span>
+    </label>
+    <nav class="site-nav" aria-label="Navigasi utama">
+        <!-- Tautan ke lima halaman website -->
+    </nav>
+</div>
 ```
 **Penjelasan kode:**
-1. `<header class="site-header">` menjadi wadah utama navbar website.
-2. `<div class="container topbar">` mengatur area navbar, termasuk posisi logo dan menu navigasi.
-3. Elemen `<a class="brand">` menampilkan logo dan nama website. Tautannya mengarah ke halaman beranda.
-4. `<nav class="site-nav">` digunakan sebagai wadah menu navigasi utama.
-5. Setiap `<a class="nav-link">` menghubungkan pengunjung dengan halaman yang berbeda, yaitu Beranda, Edukasi, Tips & Aksi, Artikel, dan Tentang Kami.
-6. Class `active` digunakan untuk membedakan menu halaman yang sedang aktif.
+1. Checkbox menyimpan status buka/tutup tanpa script tambahan.
+2. Label bernama "Menu navigasi" menjadi kontrol yang dapat diaktifkan dengan mouse maupun keyboard.
+3. `<nav>` berisi tautan menuju lima halaman dan ditampilkan dalam dropdown pada layar kecil.
+4. Class `active` digunakan untuk membedakan menu halaman yang sedang aktif.
 
 #### c. Pengaturan Layout dengan Flexbox
 Berikut potongan kode dari file `css/style.css`:
@@ -174,63 +160,45 @@ Berikut contoh kode dari file `css/style.css`:
 Berikut potongan kode dari file `css/style.css`:
 ```
 @media (max-width: 900px) {
-    .hero-inner,
-    .content-grid,
-    .problem-shell,
-    .footer-grid,
-    .grid-3,
-    .value-grid,
-    .article-grid {
-        grid-template-columns: 1fr;
+    .site-nav {
+        display: none;
+        position: absolute;
     }
 
-    .topbar {
-        flex-direction: column;
-        padding: 18px 0;
+    .nav-checkbox:checked ~ .site-nav {
+        display: grid;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+    .grid-3,
+    .cards-grid,
+    .article-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 640px) {
-    .site-nav {
-        gap: 10px;
-    }
-
-    .nav-link {
-        padding: 8px 10px;
-        font-size: 0.92rem;
-    }
-
-    .grid-4,
+    .grid-3,
     .cards-grid,
-    .info-grid,
-    .team-grid {
+    .article-grid {
         grid-template-columns: 1fr;
     }
 }
 ```
 **Penjelasan kode:**
 1. `@media (max-width: 900px)` menerapkan aturan CSS ketika lebar viewport tidak lebih dari 900 piksel.
-2. `grid-template-columns: 1fr` mengubah sejumlah layout menjadi satu kolom agar konten lebih mudah dibaca pada layar yang lebih kecil.
-3. `flex-direction: column` mengubah susunan logo dan navigasi pada `.topbar` menjadi vertikal.
-4. `@media (max-width: 640px)` menerapkan penyesuaian tambahan untuk layar smartphone.
-5. `gap: 10px` memperkecil jarak antarmenu navigasi.
-6. `padding: 8px 10px` menyesuaikan ruang di sekitar teks menu.
-7. `font-size: 0.92rem` menyesuaikan ukuran teks navigasi.
-8. `grid-template-columns: 1fr` membuat kartu informasi dan anggota kelompok tersusun dalam satu kolom.
+2. Pada layar kecil, menu dibuka dan ditutup melalui checkbox yang terhubung ke label.
+3. `@media (min-width: 641px) and (max-width: 900px)` menyusun kartu dalam dua kolom pada tablet.
+4. `@media (max-width: 640px)` menyusun konten kartu dalam satu kolom pada ponsel.
 
 Dengan media queries, tata letak website dapat menyesuaikan ukuran layar sehingga konten tetap rapi dan lebih nyaman dibaca pada perangkat yang berbeda.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 87aaee9492d2b81e835e3eae3507ad1333868cb0
 ## Struktur Folder
 Air Bersih untuk Semua/
-├── CSS/
+├── css/
 │   └── style.css
 ├── images/
-├── js/
-├── Air Bersih untuk Semua.zip
 ├── README.md
 ├── artikel.html
 ├── edukasi.html

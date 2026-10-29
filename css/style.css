@@ -35,6 +35,7 @@ a {
 
 a:focus-visible,
 button:focus-visible,
+summary:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
@@ -62,6 +63,7 @@ img {
 }
 
 .topbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -94,18 +96,45 @@ img {
   flex-wrap: nowrap;
 }
 
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-checkbox {
+  display: none;
+}
+
 .menu-toggle {
   display: none;
-  width: 48px;
-  height: 48px;
-  flex: 0 0 48px;
-  place-items: center;
-  padding: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 14px;
   border: 1px solid rgba(15, 111, 191, 0.14);
   border-radius: 14px;
   color: var(--primary-dark);
   background: var(--white);
   cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .nav-checkbox {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
 
 .menu-toggle-icon,
@@ -138,15 +167,15 @@ img {
   transform: translateY(7px);
 }
 
-.menu-open .menu-toggle-icon {
+.nav-checkbox:checked + .menu-toggle .menu-toggle-icon {
   background: transparent;
 }
 
-.menu-open .menu-toggle-icon::before {
+.nav-checkbox:checked + .menu-toggle .menu-toggle-icon::before {
   transform: rotate(45deg);
 }
 
-.menu-open .menu-toggle-icon::after {
+.nav-checkbox:checked + .menu-toggle .menu-toggle-icon::after {
   transform: rotate(-45deg);
 }
 
@@ -672,7 +701,7 @@ p {
   }
 
   .topbar {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     min-height: 72px;
     padding: 12px 0;
   }
@@ -681,37 +710,34 @@ p {
     flex: 1 1 auto;
   }
 
-  .has-menu-toggle .menu-toggle {
-    display: inline-grid;
+  .menu-toggle {
+    display: flex;
   }
 
-  .has-menu-toggle .site-nav {
+  .nav-checkbox:focus-visible + .menu-toggle {
+    outline: 3px solid rgba(15, 111, 191, 0.3);
+    outline-offset: 3px;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    display: none;
+    width: min(320px, calc(100vw - 32px));
+    padding: 8px;
+    border: 1px solid rgba(15, 111, 191, 0.1);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    z-index: 1;
+  }
+
+  .nav-checkbox:checked ~ .site-nav {
     display: grid;
-    flex: 0 0 100%;
-    gap: 4px;
-    max-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition:
-      max-height 0.25s ease,
-      opacity 0.2s ease,
-      transform 0.2s ease,
-      visibility 0.2s ease;
   }
 
-  .has-menu-toggle.menu-open .site-nav {
-    max-height: 360px;
-    padding-top: 8px;
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .has-menu-toggle .nav-link {
+  .nav-link {
     padding: 12px 14px;
     border-radius: 12px;
   }
@@ -781,9 +807,64 @@ p {
 }
 
 @media (min-width: 641px) and (max-width: 900px) {
+  .grid-3,
+  .grid-4,
+  .info-grid,
+  .cards-grid,
+  .article-grid,
+  .value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .problem-image {
     width: 200px;
     height: 135px;
     flex-basis: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .brand {
+    gap: 8px;
+    font-size: 0.94rem;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+  }
+
+  .menu-toggle {
+    gap: 8px;
+    padding: 0 10px;
+    font-size: 0.88rem;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .page-hero {
+    padding-top: 44px;
+  }
+
+  .card,
+  .info-card,
+  .tip-card {
+    padding: 22px 18px;
+  }
+
+  .article-card .article-body {
+    padding: 20px 18px 22px;
+  }
+
+  .related-list li,
+  .copyright {
+    overflow-wrap: anywhere;
   }
 }
