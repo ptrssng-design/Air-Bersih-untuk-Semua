@@ -220,6 +220,10 @@ Berikut potongan kode dari file `css/style.css`:
 
 Dengan media queries, tata letak website dapat menyesuaikan ukuran layar sehingga konten tetap rapi dan lebih nyaman dibaca pada perangkat yang berbeda.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87aaee9492d2b81e835e3eae3507ad1333868cb0
 ## Struktur Folder
 Air Bersih untuk Semua/
 ├── CSS/
